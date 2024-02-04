@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
 
+test.beforeEach(async ({ page } ) => {
+  await page.goto('https://www.google.com');
+});
+
 test.afterEach(async ({ page }, testInfo) => {
   if (testInfo.status !== testInfo.expectedStatus) {
     const screenshotPath = testInfo.outputPath(`failure.png`);
@@ -9,7 +13,6 @@ test.afterEach(async ({ page }, testInfo) => {
 });
 
 test('Test rowi first instance', async ({ page }) => {
-  await page.goto('https://www.google.com');
   const searchInput = page.getByRole('search').getByRole('combobox');
   await searchInput.click();
   await searchInput.fill('Rowi');
