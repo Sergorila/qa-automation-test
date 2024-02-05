@@ -9,5 +9,5 @@ test.beforeEach(async ({ page }) => {
 test("Test rowi first instance", async ({ page }) => {
   const searchPage = new SearchPage(page);
   await searchPage.search("Rowi");
-  await expect(searchPage.getNthResult(0)).not.toContainText(rowiURL);
+  await expect(searchPage.getNthResult(0)).toContainText(rowiURL);
 });
